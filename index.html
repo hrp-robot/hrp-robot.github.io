@@ -215,60 +215,24 @@ out-of-distribution settings. For code, weights, and data check: https://www.cs.
     <div class="rows is-centered ">
       <div class="row is-full-width">
         <h2 class="title is-3">Method</span></h2>
-        <!-- </br>
-        <div class="rows is-centered">
-          <div class="columns is-centered has-text-centered">
-            <div class="column"><h3 class="title is-5">GAN Output</h3></div>
-            <div class="column"><h3 class="title is-5">+ Thickness Augmentation</h3></div>
-            <div class="column"><h3 class="title is-5">+ Color Augmentation</h3></div>
-            <div class="column"><h3 class="title is-5">+ Affine Augmentation</h3></div>
-          </div>
-          <div class="columns is-centered has-text-centered">
-            <img src="assets/sketch/00018.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_thickness/00018.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_color/00018.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_all/00018.png" style="width: 25%; height: auto;"/>
-          </div>
-          <div class="columns is-centered has-text-centered">
-            <img src="assets/sketch/00009.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_thickness/00009.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_color/00009.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_all/00009.png" style="width: 25%; height: auto;"/>
-          </div>
-          <div class="columns is-centered has-text-centered">
-            <img src="assets/sketch/00007.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_thickness/00007.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_color/00007.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_all/00007.png" style="width: 25%; height: auto;"/>
-          </div>
-          <div class="columns is-centered has-text-centered">
-            <img src="assets/sketch/00004.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_thickness/00004.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_color/00004.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_all/00004.png" style="width: 25%; height: auto;"/>
-          </div>
-          <div class="columns is-centered has-text-centered">
-            <img src="assets/sketch/00005.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_thickness/00005.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_color/00005.png" style="width: 25%; height: auto;"/>
-            <img src="assets/sketch_all/00005.png" style="width: 25%; height: auto;"/>
-          </div>
-        </div>
-        </br>
-        </br>
-          <p class="content has-text-justified">
-          Training a sketch-conditioned IL policy requires collecting a dataset of trajectories paired with sketches representing the goal state. Since this is infeasible to collect manually at scale, we first train an image-to-sketch GAN translation network which automatically converts images into sketches. We additionally augment these generated sketches with various colorspace and affine transforms, to simulate variations in hand-drawn sketches. Using this network, we automatically convert hindsight-relabeled goal images from robot trajectories into goal sketches. The results are visualized above.
-          </p>
-        </br> -->
         <img src="media/figures/method.png" class="interpolation-image" style="width: 100%; height: auto;"/>
       </br>
+      <p class="content has-text-justified">
+        HRP fine-tunes a pre-trained encoder to predict three classes of human affordance labels via L2 regression. Specifically,
+the network must predict future contact points, human hand poses, and the target object given an input frame from the
+video stream. These affordance labels are mined autonomously from a human video dataset [33] using off-the-shelf vision
+detectors [81]. HRP representations are then fine-tuned to solve downstream manipulation tasks via behavior cloning.
+      </p>
+
       <h2 class="title is-3">Policy Training</span></h2>
         </br>
           <img src="media/figures/policy_training.png" class="interpolation-image" style="width: 100%; height: auto;"/>
         </br>
         </br>
           <p class="content has-text-justified">
-            To train RT-Sketch, we sample an episode from a pre-recorded dataset of robot trajectories. Treating the last observation in the trajectory as a goal image, we convert this goal image to either a GAN-generated goal sketch, a colorized sketch, or an edge-detected image. We concatenate this goal representation with the history of RGB observations in the trajectory. Finally, the concatenated inputs serve as input to RT-Sketch, which outputs tokenized actions. The purpose of training on the varied input types is to encourage the policy to afford different levels in input sketch specificity.
+            We present our policy training pipeline, which uses Behavior Cloning (BC) to train policy π, using optimal expert demonstrations.
+The image observation (ot) is processed using our HRP representations resulting in a latent vector z. The policy uses z to predict end-effector
+velocity actions (delta ee-pose/gripper), which are directly executed on the robot during test-time.
           </p>
         </br>
         </br>
@@ -293,13 +257,13 @@ out-of-distribution settings. For code, weights, and data check: https://www.cs.
     <div class="hero-body">
       <div class="container">
         <h2 class="subtitle has-text-centered">
-        RT-Sketch is a <b>sketch-to-action</b> behavior-cloning agent which is<br>
+        HRP is an <b>affordance based</b> visual pre-training method that <br>
         </h2>
         <h2 class="body">
-        <b>(1)</b> On par with image-conditioned and language-conditioned agents for <b>tabletop / countertop manipulation</b><br>
-        <b>(2)</b> Compatible with sketches of <b>varied detail</b><br>
-        <b>(3)</b> Robust to <b>visual distractors</b><br>
-        <b>(4)</b> Unaffected by <b>semantic ambiguities</b>
+
+        <b>(1)</b> Allows us to learn <b>actionable representations</b> from human videos! <br>
+        <b>(2)</b> Improves performance for almost any pre-trained model (CLIP, DINO, Ego4D, ImageNet, etc)<br>
+        <b>(3)</b> Robust <b>across multiple tasks (including dexterous) and unique camera views</b><br>
         </h2>
 
       </div>
@@ -307,438 +271,6 @@ out-of-distribution settings. For code, weights, and data check: https://www.cs.
   </div>
 </section>
 
-
-<section class="section">
-  <div class="container is-max-widescreen">
-
-    <div class="rows">
-      <h2 class="title is-3">Tabletop / Countertop Manipulation</h2>
-      
-      <p class="content has-text-justified">
-      For straightforward manipulation tasks such as those in the RT-1 benchmark, RT-Sketch performs on par with language-conditioned and image-conditioned agents for nearly all skills: 
-      </p>
-      
-      <div class="columns">
-        <div class="column has-text-centered">
-          <video id="dist1"
-            controls
-            muted
-            autoplay
-            loop
-            width="100%">
-            <source src="assets/h1_vids/move_near.mp4" 
-            type="video/mp4">
-          </video>
-          <h3 class="title is-5">Move Near Skill</h3>
-        </div>
-
-      <div class="columns">
-        <div class="column has-text-centered">
-          <video id="dist2"
-            controls
-            muted
-            autoplay
-            loop
-            width="85%">
-            <source src="assets/h1_vids/pick_drawer.mp4" 
-            type="video/mp4">
-          </video>
-          <h3 class="title is-5">Pick Drawer</h3>
-        </div>
-    
-    </div>
-
-    
-    </div>
-      <div class="columns">
-        <div class="column has-text-centered">
-          <video id="dist1"
-            controls
-            muted
-            autoplay
-            loop
-            width="100%">
-            <source src="assets/h1_vids/drawer_open.mp4" 
-            type="video/mp4">
-          </video>
-          <h3 class="title is-5">Drawer Open</h3>
-        </div>
-
-      <div class="columns">
-        <div class="column has-text-centered">
-          <video id="dist2"
-            controls
-            muted
-            autoplay
-            loop
-            width="85%">
-            <source src="assets/h1_vids/drawer_close.mp4" 
-            type="video/mp4">
-          </video>
-          <h3 class="title is-5">Drawer Close</h3>
-        </div>
-     </div>
-
-    </div>
-      <div class="columns">
-        <div class="column has-text-centered">
-          <video id="dist1"
-            controls
-            muted
-            autoplay
-            loop
-            width="100%">
-            <source src="assets/h1_vids/knock.mp4" 
-            type="video/mp4">
-          </video>
-          <h3 class="title is-5">Knock</h3>
-        </div>
-
-      <div class="columns">
-        <div class="column has-text-centered">
-          <video id="dist2"
-            controls
-            muted
-            autoplay
-            loop
-            width="85%">
-            <source src="assets/h1_vids/upright.mp4" 
-            type="video/mp4">
-          </video>
-          <h3 class="title is-5">Upright</h3>
-        </div>
-     </div>
-
-</section>
-
-<section class="section">
-  <div class="container is-max-widescreen">
-
-    <div class="rows">
-      <h2 class="title is-3">Robustness to Sketch Detail</h2>
-      
-      <p class="content has-text-justified">
-      RT-Sketch further affords input sketches with varied levels of detail, ranging from free-hand sketches to colorized sketches, without a performance drop compared to upper-bound representations like edge-detected images.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-
-    <div class="container is-fullhd">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h3 class="title is-5">Move Near Skill</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/blob1_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/line1_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/colored1_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/edge1_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/blob3_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/line3_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/colored3_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/edge3_movenear.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-
-    <div class="container is-fullhd">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h3 class="title is-5">Drawer Open Skill</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/blob1_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/line1_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/colored1_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/edge1_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/blob2_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/line2_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/colored2_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-       <div class="item">
-          <video poster="" autoplay muted loop height="100%">
-            <source src="assets/h2_vids/edge2_draweropen.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-widescreen">
-
-    <div class="rows">
-
-    <!-- Animation. -->
-    <div class="rows is-centered ">
-      <div class="row is-full-width">
-        <h2 class="title is-3">Emergent Capabilities: Robustness to Visual Distractors</h2>
-      <p class="content has-text-justified">
-      Although RT-Sketch is only trained on distractor-free settings, we find that it is able to handle visual distractors in the scene well, while goal-image conditioned policies are easily thrown out of distribution and fail to make task progress. This is likely due to the minimal nature of sketches, which inherently helps the policy attend to only task-relevant objects.
-      </p>
-
-        
-        <div class="columns">
-          <div class="column has-text-centered">
-         <h2 class="title is-5 has-text-centered">
-         <br>
-         In terms of <b>perceived semantic</b> and <b>spatial alignment</b> on a 1-7 scale, RT-Sketch achieves a <br>
-         <font color="#fc9d03"><b>1.5X</b></font> and <font color="#fc9d03"><b>1.6X</b></font> improvement over a <font color="
-#2f8043">goal-image conditioned policy.</font><br>
-         </h2>
-        </div>
-        </div>
-        <div class="columns">
-          <div class="column has-text-centered">
-
-            Visualize Trial
-            <div class="select is-small is-rounded">     
-              <select id="interative-menu" onchange="updateInteractive()">
-              <option value="1" selected="selected">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              </select>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="columns">
-          <div class="column is-half has-text-centered">
-            <div class="columns is-centered has-text-centered">
-              <div class="column"><h3 class="title is-5">Goal Image</h3></div>
-              <div class="column"><h3 class="title is-5">Rollout</h3></div>
-            </div>
-            <p style="text-align:center;">
-              <video id="interactive-video1" width="100%" height="100%" controls autoplay loop muted>
-                <source src="assets/h3_vids/goal1.mp4" type="video/mp4">
-              </video>
-            </p>
-            <h3 class="title is-5">RT-Goal Image</h3>
-          </div>
-
-          <div class="column is-half has-text-centered">
-            <div class="columns is-centered has-text-centered">
-              <div class="column"><h3 class="title is-5">Goal Sketch</h3></div>
-              <div class="column"><h3 class="title is-5">Rollout</h3></div>
-            </div>
-            <p style="text-align:center;">
-              <video id="interactive-video2" width="100%" height="100%" controls autoplay loop muted>
-                <source src="assets/h3_vids/sketch1.mp4" type="video/mp4">
-              </video>
-            </p>
-            <h3 class="title is-5">RT-Sketch</h3>
-          </div>
-
-        </div>
-        
-        
-        
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-widescreen">
-
-    <div class="rows">
-
-    <!-- Animation. -->
-    <div class="rows is-centered ">
-      <div class="row is-full-width">
-        <h2 class="title is-3">Semantic Ambiguity</h2>
-      <p class="content has-text-justified">
-      While convenient, language instructions can often be underspecified, ambiguous, or may require lengthy descriptions to communicate task goals effectively. These issues do not arise with sketches, which offer a minimal yet expressive means of conveying goals. We find that RT-Sketch is performant in scenarios where language can be ambiguous or too out-of-distribution for policies like RT-1 to handle.
-      
-      </p>
-        <div class="columns">
-          <div class="column has-text-centered">
-         <h3 class="title is-5 has-text-centered">
-         <br>
-         In terms of <b>perceived semantic</b> and <b>spatial alignment</b> on a 1-7 scale, RT-Sketch achieves a <br>
-         <font color="#fc9d03"><b>2.4X</b></font> and <font color="#fc9d03"><b>2.8X</b></font> improvement over <font color="#4787b5">RT-1.</font><br>
-         </h3>
-        </div>
-        </div>
-
-        <div class="columns">
-          <div class="column has-text-centered">
-
-            Visualize Trial
-            <div class="select is-small is-rounded">     
-              <select id="interative-semantic-menu" onchange="updateInteractiveSemantic()">
-              <option value="pick-orange-and-place-in-top-drawer-1" selected="selected">"pick orange and place in top drawer" (1)</option>
-              <option value="pick-orange-and-place-in-top-drawer-2">"pick orange and place in top drawer" (2)</option>
-              <option value="pick-orange-and-place-in-top-drawer-3">"pick orange and place in top drawer" (3)</option>
-              <option value="move-apple-to-pile">"move the apple to a pile"</option>
-              <option value="move-apple-where-belongs">"move the apple where it belongs"</option>
-              <option value="rainbow">"complete the rainbow"</option>
-              <option value="left">"move everything to the left"</option>
-              <option value="smiley">"make a smiley face"</option>
-              <option value="frowny">"make a frowny face"</option>
-              <option value="nose">"move the orange to the middle"</option>
-              </select>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="columns">
-          <div class="column is-half has-text-centered">
-            <div class="columns is-centered has-text-centered">
-              <div class="column"><h3 class="title is-5">Language Goal + Rollout</h3></div>
-            </div>
-            <p style="text-align:center;">
-              <video id="interactive-video-semantic-1" width="50%" height="50%" controls autoplay loop muted>
-                <source src="assets/h4_vids/pick-orange-and-place-in-top-drawer-1/semantic.mp4" type="video/mp4">
-              </video>
-            </p>
-            <h3 class="title is-5">RT-1</h3>
-          </div>
-
-          <div class="column is-half has-text-centered">
-            <div class="columns is-centered has-text-centered">
-              <div class="column"><h3 class="title is-5">Goal Sketch</h3></div>
-              <div class="column"><h3 class="title is-5">Rollout</h3></div>
-            </div>
-            <p style="text-align:center;">
-              <video id="interactive-video-semantic-2" width="100%" height="100%" controls autoplay loop muted>
-                <source src="assets/h4_vids/pick-orange-and-place-in-top-drawer-1/spatial.mp4" type="video/mp4">
-              </video>
-            </p>
-            <h3 class="title is-5">RT-Sketch</h3>
-          </div>
-
-        </div>
-        
-    </div>
-  </div>
-</section>
 
 <section class="hero teaser">
   <div class="container is-max-widescreen">
@@ -749,25 +281,31 @@ out-of-distribution settings. For code, weights, and data check: https://www.cs.
       <div class="row is-full-width is-centered">
         <h2 class="title is-3">Quantitative Results</span></h2>
         <p class="content has-text-justified">
-        We measure performance of RT-Sketch compared to language-conditioned (RT-1) and goal image-conditioned (RT-Goal Image) policies in terms of 2 quantitative metrics: (1) human-provided Likert ratings on goal alignment, and (2) pixelwise error between (manually labeled) achieved object positions and ground truth object keypoints from reference goal images. RT-Sketch performs comparably to both in straightforward tasks (H1), can handle different levels of sketch detail with minimal performance drop (H2), and is favorable when visual distractors are present (H3) or when language would be ambiguous (H4). 
+          We apply HRP to 6 different baseline representations and plot how it affects performance on average across the toasting, pouring,
+and stacking tasks. We evaluate the performance across two distinct cameras in order to test if HRP representation
+are robust to view shifts. We find that HRP representations consistently and substantially outperform their vanilla baselines, and that this
+effect holds across both the front (left) and ego (right) cameras. In fact, our strongest representation <b>ImageNet + HRP</b> delivers SOTA
+performance on both views!
         <br>
         <br>
-        <h3 class="title is-5">Likert Ratings</h3>
+        <h3 class="title is-5">Finetuning Performance</h3>
         </p>
-        <img src="assets/h1234.png" style="width: 100%; height: auto;"/>
+        <img src="media/figures/hrp_cam_results.png" style="width: 100%; height: auto;"/>
         <p class="content has-text-justified">
         <br>
         <br>
-        <h3 class="title is-5">Pixelwise Error</h3>
+        <h3 class="title is-5">Ablations</h3>
+        <p class="content has-text-justified">
+          We ablate HRP (full fine-tuning) to the 6 baseline representations, comparing their average performance versus standard HRP representations on toasting, pouring, and stacking tasks. LayerNorm only fine-tuning is almost always superior.
+
+We also drop each of the 3 losses in HRP to compare the ablated method’s average performance against full HRP representations across the toasting, pouring, and stacking tasks. This experiment is conducted on the Ego4D, ImageNet, and VC-1 base models. Object and hand losses are found to be critical for good performance, while the contact loss significantly impacts only the Ego4D base model.
+        </p>
         </p>
       </div>
     </div>
     </div>
     <div class="columns is-centered has-text-centered">
-        <img src="assets/h1_table.png" style="width: 80%; height: auto;"/>
-    </div>
-    <div class="columns is-centered has-text-centered">
-        <img src="assets/h2_table.png" style="width: 75%; height: auto;"/>
+        <img src="media/figures/hrp_albation_results.png" style="width: 100%; height: auto;"/>
     </div>
    </div>
 </section>
