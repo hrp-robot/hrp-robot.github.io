@@ -92,30 +92,61 @@
             <!-- <span class="author-block"><sup></sup>Carnegie Mellon University</span> -->
           </div>
 
-          <img src="./assets/logos/cmu.png" width="8%" style="margin-right: 35px;"></img>
+          <!-- <img src="./assets/logos/cmu.png" width="8%" style="margin-right: 35px;"></img> -->
 
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
+              <!-- TODO Paper -->
               <span class="link-block">
-                <a target="_self" href="./additional.html"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span>Additional Results</span>
-                </a>
-              </span>
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a target="_blank" href="https://arxiv.org/abs/2403.02709"
+                <a href="./resources/paper.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                    <i class="fa fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- TODO Arxiv -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2310.09289"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
                 </a>
               </span>
+              <!-- TODO Twitter -->
+              <span class="link-block">
+                <a href="https://x.com/SudeepDasari/status/1713917194097008776?s=20"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span>
+                </a>
+              </span>
+              <!-- TODO Code -->
+              <span class="link-block">
+                <a href="https://github.com/SudeepDasari/data4robotics"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- TODO Models-->
+              <span class="link-block">
+                <a href="https://cmu.box.com/s/rrlrp5g6ynk03io4rj9uzf6nik5urfl6"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-eye"></i>
+                  </span>
+                  <span>Models</span>
+                  </a>
             </div>
-          </div>
 
         </div>
       </div>
@@ -141,66 +172,48 @@
   </div>
 </section>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-two-thirds">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds">
+          <h2 class="title is-3">Abstract</h2>
+        </div>
+    </div>
+  
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+      <div class="column is-two-thirds ">
         <div class="content has-text-justified">
-          <p>
-            In order to generalize to various tasks in the wild,
-robotic agents will need a suitable representation (i.e., vision
-network) that enables the robot to predict optimal actions
-given high dimensional vision inputs. However, learning such
-a representation requires an extreme amount of diverse training
-data, which is prohibitively expensive to collect on a real robot.
-How can we overcome this problem? Instead of collecting more
-robot data, this paper proposes using internet-scale, human
-videos to extract “affordances,” both at the environment and
-agent level, and distill them into a pre-trained representation.
-We present a simple framework for pre-training representations
-on hand, object, and contact “affordance labels” that highlight
-relevant objects in images and how to interact with them. These
-affordances are automatically extracted from human video data
-(with the help of off-the-shelf computer vision modules) and
-used to fine-tune existing representations. Our approach can
-efficiently fine-tune any existing representation, and results in
-models with stronger downstream robotic performance across the
-board. We experimentally demonstrate (using 3000+ robot trials)
-that this affordance pre-training scheme boosts performance
-by a minimum of 15% on 5 real-world tasks, which consider
-three diverse robot morphologies (including a dexterous hand).
-Unlike prior works in the space, these representations improve
-performance across 3 different camera views. Quantitatively, we
-find that our approach leads to higher levels of generalization in
-out-of-distribution settings. For code, weights, and data check: https://www.cs.cmu.edu/~data4robotics/hrp/index.html
-          </p>
-        </div>
+          In order to generalize to various tasks in the wild,
+          robotic agents will need a suitable representation (i.e., vision
+          network) that enables the robot to predict optimal actions
+          given high dimensional vision inputs. However, learning such
+          a representation requires an extreme amount of diverse training
+          data, which is prohibitively expensive to collect on a real robot.
+          How can we overcome this problem? Instead of collecting more
+          robot data, this paper proposes using internet-scale, human
+          videos to extract “affordances,” both at the environment and
+          agent level, and distill them into a pre-trained representation.
+          We present a simple framework for pre-training representations
+          on hand, object, and contact “affordance labels” that highlight
+          relevant objects in images and how to interact with them. These
+          affordances are automatically extracted from human video data
+          (with the help of off-the-shelf computer vision modules) and
+          used to fine-tune existing representations. Our approach can
+          efficiently fine-tune any existing representation, and results in
+          models with stronger downstream robotic performance across the
+          board. We experimentally demonstrate (using 3000+ robot trials)
+          that this affordance pre-training scheme boosts performance
+          by a minimum of 15% on 5 real-world tasks, which consider
+          three diverse robot morphologies (including a dexterous hand).
+          Unlike prior works in the space, these representations improve
+          performance across 3 different camera views. Quantitatively, we
+          find that our approach leads to higher levels of generalization in
+          out-of-distribution settings.
+          </div>
+      </div>
       </div>
     </div>
-    <br>
-    <br>
-    <!--/ Abstract. -->
-
-  </div>
-
-</section>
-
-
-<section class="hero teaser">
-  <div class="container is-fullhd">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-vcentered  is-centered">
-          <video id="teaser" autoplay muted loop height="70%" width="70%">
-            <source src="./media/videos/teaser.mp4"
-                    type="video/mp4">
-          </video>
-          </br>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -208,34 +221,35 @@ out-of-distribution settings. For code, weights, and data check: https://www.cs.
 <section class="hero teaser">
   <div class="container is-max-widescreen">
 
-    <div class="rows">
+    <!-- <div class="rows"> -->
+      <div class="rows">
+        <div class="row is-full-width">
+          <div class="column" style="text-align: center;">
+          <h2 class="title is-3">HRP: Model</span></h2>
+          </div>
 
-
-    <!-- Animation. -->
-    <div class="rows is-centered ">
-      <div class="row is-full-width">
-        <h2 class="title is-3">Method</span></h2>
-        <img src="media/figures/method.png" class="interpolation-image" style="width: 100%; height: auto;"/>
-      </br>
-      <p class="content has-text-justified">
-        HRP fine-tunes a pre-trained encoder to predict three classes of human affordance labels via L2 regression. Specifically,
-the network must predict future contact points, human hand poses, and the target object given an input frame from the
-video stream. These affordance labels are mined autonomously from a human video dataset [33] using off-the-shelf vision
-detectors [81]. HRP representations are then fine-tuned to solve downstream manipulation tasks via behavior cloning.
-      </p>
-
-      <h2 class="title is-3">Policy Training</span></h2>
-        </br>
-          <img src="media/figures/policy_training.png" class="interpolation-image" style="width: 100%; height: auto;"/>
-        </br>
-        </br>
-          <p class="content has-text-justified">
-            We present our policy training pipeline, which uses Behavior Cloning (BC) to train policy π, using optimal expert demonstrations.
-The image observation (ot) is processed using our HRP representations resulting in a latent vector z. The policy uses z to predict end-effector
-velocity actions (delta ee-pose/gripper), which are directly executed on the robot during test-time.
-          </p>
-        </br>
-        </br>
+      <div class="columns is-centered">
+        <div class="column is-full" style="text-align: center;">
+          <img src="media/figures/method.png" alt="Image description" width="80%">
+          <br>
+          <br>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+              <div class="content has-text-justified interpolation-panel">
+                <!-- <div class="content has-text-justified"> -->
+                <p style="text-align: center;font-size: 18px"> 
+                  HRP fine-tunes a pre-trained encoder to predict three classes of human affordance labels via L2 regression. Specifically,
+                  the network must predict future contact points, human hand poses, and the target object given an input frame from the
+                  video stream. These affordance labels are mined autonomously from a human video dataset [33] using off-the-shelf vision
+                  detectors [81]. HRP representations are then fine-tuned to solve downstream manipulation tasks via behavior cloning.
+                </p>
+            </div>
+          </div>
+        </div>
+        <br>
+          
+        </div>
+      </div>
 
         </div>
       </div>
@@ -244,116 +258,123 @@ velocity actions (delta ee-pose/gripper), which are directly executed on the rob
   </div>
 </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Results</h2>
+<section class="hero teaser">
+  <div class="container is-max-widescreen">
+
+    <!-- <div class="rows"> -->
+      <div class="rows">
+        <div class="row is-full-width">
+          <div class="column" style="text-align: center;">
+          <h2 class="title is-3">Policy Trianing</span></h2>
+          </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full" style="text-align: center;">
+          <img src="media/figures/policy_training.png" alt="Image description" width="80%">
+          <br>
+          <br>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+              <div class="content has-text-justified interpolation-panel">
+                <!-- <div class="content has-text-justified"> -->
+                <p style="text-align: center;font-size: 18px"> 
+                  We present our policy training pipeline, which uses Behavior Cloning (BC) to train policy π, using optimal expert demonstrations.
+                  The image observation (ot) is processed using our HRP representations resulting in a latent vector z. The policy uses z to predict end-effector
+                  velocity actions (delta ee-pose/gripper), which are directly executed on the robot during test-time.
+                </p>
+            </div>
+          </div>
+        </div>
+        <br>
+          
+        </div>
       </div>
+
+
+    <!-- Animation. -->
     </div>
-  </div>
-  <div class="container is-fullhd">
-    <div class="hero-body">
-      <div class="container">
-        <h2 class="subtitle has-text-centered">
-        HRP is an <b>affordance based</b> visual pre-training method that <br>
-        </h2>
-        <h2 class="body">
-
-        <b>(1)</b> Allows us to learn <b>actionable representations</b> from human videos! <br>
-        <b>(2)</b> Improves performance for almost any pre-trained model (CLIP, DINO, Ego4D, ImageNet, etc)<br>
-        <b>(3)</b> Robust <b>across multiple tasks (including dexterous) and unique camera views</b><br>
-        </h2>
-
-      </div>
     </div>
   </div>
 </section>
 
-
 <section class="hero teaser">
   <div class="container is-max-widescreen">
 
-    <div class="rows">
-    <!-- Animation. -->
-    <div class="rows is-centered ">
-      <div class="row is-full-width is-centered">
-        <h2 class="title is-3">Quantitative Results</span></h2>
-        <p class="content has-text-justified">
-          We apply HRP to 6 different baseline representations and plot how it affects performance on average across the toasting, pouring,
+    <!-- <div class="rows"> -->
+      <div class="rows">
+        <div class="row is-full-width">
+          <div class="column" style="text-align: center;">
+          <h2 class="title is-3">Quantitative Results</span></h2>
+          </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full" style="text-align: center;">
+          <img src="media/figures/hrp_cam_results.png" alt="Image description" width="80%">
+          <br>
+          <br>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+              <div class="content has-text-justified interpolation-panel">
+                <!-- <div class="content has-text-justified"> -->
+                <p style="text-align: center;font-size: 18px"> 
+                  We apply HRP to 6 different baseline representations and plot how it affects performance on average across the toasting, pouring,
 and stacking tasks. We evaluate the performance across two distinct cameras in order to test if HRP representation
 are robust to view shifts. We find that HRP representations consistently and substantially outperform their vanilla baselines, and that this
 effect holds across both the front (left) and ego (right) cameras. In fact, our strongest representation <b>ImageNet + HRP</b> delivers SOTA
 performance on both views!
+                </p>
+            </div>
+          </div>
+        </div>
         <br>
-        <br>
-        <h3 class="title is-5">Finetuning Performance</h3>
-        </p>
-        <img src="media/figures/hrp_cam_results.png" style="width: 100%; height: auto;"/>
-        <p class="content has-text-justified">
-        <br>
-        <br>
-        <h3 class="title is-5">Ablations</h3>
-        <p class="content has-text-justified">
-          We ablate HRP (full fine-tuning) to the 6 baseline representations, comparing their average performance versus standard HRP representations on toasting, pouring, and stacking tasks. LayerNorm only fine-tuning is almost always superior.
-
-We also drop each of the 3 losses in HRP to compare the ablated method’s average performance against full HRP representations across the toasting, pouring, and stacking tasks. This experiment is conducted on the Ego4D, ImageNet, and VC-1 base models. Object and hand losses are found to be critical for good performance, while the contact loss significantly impacts only the Ego4D base model.
-        </p>
-        </p>
+          
+        </div>
       </div>
-    </div>
-    </div>
-    <div class="columns is-centered has-text-centered">
-        <img src="media/figures/hrp_albation_results.png" style="width: 100%; height: auto;"/>
-    </div>
-   </div>
-</section>
 
-<section class="section">
-  <div class="container is-max-widescreen">
 
-    <div class="rows">
-      <h2 class="title is-3">Failure Modes</h2>
-      <p class="content has-text-justified">
-      RT-Sketch's main failure modes are imprecision and moving the wrong object. We see the first failure mode typically when RT-Sketch positions an object correctly but fails to reorient it (common in the upright task). The second failure mode is most apparent in the case of visual distractor objects, where RT-Sketch mistakenly picks up the wrong object and puts in the appropriate place. We posit that both of these failures are due to RT-Sketch being trained on GAN-generated sketches, which occasionally do not preserve geometric details well, leading the policy to not pay close attention to objects or object orientations.
-      </p>
-        <div class="rows is-centered">
-            <h3 class="title is-4">Imprecision</h3>
-          <div class="columns is-centered has-text-centered">
-            <div class="column"><p>Coke can moved to correct location, but not upright</p></div>
-            <div class="column"><p>Pepsi can moved to correct location, but not upright</p></div>
-          </div>
-          <div class="columns is-centered has-text-centered">
-            <video id="imprecise1" autoplay muted loop height="50%" width="50%">
-              <source src="assets/imprecise1.mp4"
-                      type="video/mp4">
-            </video>
-            <video id="imprecise2" autoplay muted loop height="50%" width="50%">
-              <source src="assets/imprecise2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <br>
-            <h3 class="title is-4">Wrong Object</h3>
-          <div class="columns is-centered has-text-centered">
-            <div class="column"><p>Apple moved instead of coke can</p></div>
-            <div class="column"><p>Coke can moved instead of fruit</p></div>
-          </div>
-          <div class="columns is-centered has-text-centered">
-            <video id="wrongobject1" autoplay muted loop height="50%" width="50%">
-              <source src="assets/wrong_obj1.mp4"
-                      type="video/mp4">
-            </video>
-            <video id="wrongobject2" autoplay muted loop height="50%" width="50%">
-              <source src="assets/wrong_obj2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
+    <!-- Animation. -->
+    </div>
     </div>
   </div>
 </section>
 
+<section class="hero teaser">
+  <div class="container is-max-widescreen">
+
+    <!-- <div class="rows"> -->
+      <div class="rows">
+        <div class="row is-full-width">
+          <div class="column" style="text-align: center;">
+          <h2 class="title is-3">Ablations</span></h2>
+          </div>
+
+      <div class="columns is-centered">
+        <div class="column is-full" style="text-align: center;">
+          <img src="media/figures/hrp_albation_results.png" alt="Image description" width="80%">
+          <br>
+          <br>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-two-thirds">
+              <div class="content has-text-justified interpolation-panel">
+                <!-- <div class="content has-text-justified"> -->
+                <p style="text-align: center;font-size: 18px"> 
+                  We ablate HRP (full fine-tuning) to the 6 baseline representations, comparing their average performance versus standard HRP representations on toasting, pouring, and stacking tasks. LayerNorm only fine-tuning is almost always superior.
+                  We also drop each of the 3 losses in HRP to compare the ablated method’s average performance against full HRP representations across the toasting, pouring, and stacking tasks. This experiment is conducted on the Ego4D, ImageNet, and VC-1 base models. Object and hand losses are found to be critical for good performance, while the contact loss significantly impacts only the Ego4D base model.                  
+                </p>
+            </div>
+          </div>
+        </div>
+        <br>
+          
+        </div>
+      </div>
+
+
+    <!-- Animation. -->
+    </div>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="container">
