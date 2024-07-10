@@ -177,7 +177,7 @@
   </div>
 </section>
 
-<section class="hero is-light is-small">
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container is-two-thirds">
       <div class="columns is-centered has-text-centered">
@@ -221,7 +221,7 @@
     </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="hero teaser">
   <div class="container is-max-widescreen">
@@ -242,7 +242,7 @@
             <div class="column is-two-thirds">
               <div class="content has-text-justified interpolation-panel">
                 <!-- <div class="content has-text-justified"> -->
-                <p style="text-align: center;font-size: 18px"> 
+                <p style="text-align: left;font-size: 18px"> 
                   HRP fine-tunes a pre-trained encoder to predict three classes of human affordance labels via L2 regression. Specifically,
                   the network must predict future contact points, human hand poses, and the target object given an input frame from the
                   video stream. These affordance labels are mined autonomously from a human video dataset [33] using off-the-shelf vision
@@ -282,7 +282,7 @@
             <div class="column is-two-thirds">
               <div class="content has-text-justified interpolation-panel">
                 <!-- <div class="content has-text-justified"> -->
-                <p style="text-align: center;font-size: 18px"> 
+                <p style="text-align: left;font-size: 18px"> 
                   We present our policy training pipeline, which uses Behavior Cloning (BC) to train policy π, using optimal expert demonstrations.
                   The image observation (ot) is processed using our HRP representations resulting in a latent vector z. The policy uses z to predict end-effector
                   velocity actions (delta ee-pose/gripper), which are directly executed on the robot during test-time.
@@ -298,6 +298,81 @@
 
     <!-- Animation. -->
     </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="width: 85%; margin: 0 auto;">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="text-align: center; padding-bottom: 10px;">
+          <strong>Robot Tasks</strong>
+        </h2>
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-two-thirds ">
+            <div class="content has-text-justified">
+              <p style="text-align: center; font-size: 22px">
+                We benchmark HRP on <strong> 5 Tasks, 3 robot morphologies</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/toasting_0.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/toasting_1.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/toasting_2.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/pouring_0.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/pouring_1.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/pouring_2.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/stacking_0.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/stacking_1.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/stacking_2.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/pickup_0.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/pot_0.mp4" style="border-radius:10px; width: 100%; height: 38vh; object-fit: fill;"></video>
+          </div>
+          <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/pickup_1.mp4" style="border-radius:10px; width: 100%;"></video>
+          </div>
+          <!-- <div class="column is-one-third">
+            <video class="center" playsinline autoplay loop muted src="./media/videos/pot_0.mp4" style="border-radius:10px; width: 100%; height: 50%"></video>
+          </div> -->
+
+          
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
@@ -321,7 +396,7 @@
             <div class="column is-two-thirds">
               <div class="content has-text-justified interpolation-panel">
                 <!-- <div class="content has-text-justified"> -->
-                <p style="text-align: center;font-size: 18px"> 
+                <p style="text-align: left;font-size: 18px"> 
                   We apply HRP to 6 different baseline representations and plot how it affects performance on average across the toasting, pouring,
 and stacking tasks. We evaluate the performance across two distinct cameras in order to test if HRP representation
 are robust to view shifts. We find that HRP representations consistently and substantially outperform their vanilla baselines, and that this
@@ -362,7 +437,7 @@ performance on both views!
             <div class="column is-two-thirds">
               <div class="content has-text-justified interpolation-panel">
                 <!-- <div class="content has-text-justified"> -->
-                <p style="text-align: center;font-size: 18px"> 
+                <p style="text-align: left;font-size: 18px"> 
                   We ablate HRP (full fine-tuning) to the 6 baseline representations, comparing their average performance versus standard HRP representations on toasting, pouring, and stacking tasks. LayerNorm only fine-tuning is almost always superior.
                   We also drop each of the 3 losses in HRP to compare the ablated method’s average performance against full HRP representations across the toasting, pouring, and stacking tasks. This experiment is conducted on the Ego4D, ImageNet, and VC-1 base models. Object and hand losses are found to be critical for good performance, while the contact loss significantly impacts only the Ego4D base model.                  
                 </p>
@@ -380,6 +455,9 @@ performance on both views!
     </div>
   </div>
 </section>
+
+
+
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
